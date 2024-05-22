@@ -1,0 +1,283 @@
+.form-wrapper {
+    padding: 0 5%;
+}
+
+.form-container {
+    margin: 30px auto;
+    font-family: Open Sans, sans-serif;
+    max-width: 1200px;
+}
+
+.form-container fieldset {
+    border-radius: 5px;
+    margin: 20px 0;
+    padding: 20px;
+}
+
+.form-container fieldset legend {
+    margin-left: 0;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--main);
+}
+
+.form-container fieldset form {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+
+.form-container fieldset form input,
+.form-container fieldset form select,
+.form-container fieldset form textarea {
+    width: 100%;
+    border: 0;
+    outline: none;
+    background: var(--bg);
+    padding: 15px;
+    margin: 15px 0;
+    color: var(--font);
+    border: 1px solid var(--main);
+    font-size: 18px;
+    border-radius: 6px;
+    resize: none;
+}
+
+.form-container fieldset form .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid var(--main);
+    background: transparent;
+    color: var(--font);
+    border-radius: 10px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    transition: all .3s ease-in-out;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form-container fieldset form .btn:hover {
+    background: var(--main);
+    color: #fff;
+    box-shadow: 0 0 10px var(--main);
+}
+
+.form-container fieldset p {
+    font-size: 14px;
+    font-weight: 900;
+    text-align: center;
+}
+
+.form-container fieldset p span {
+    color: var(--main);
+    cursor: pointer;
+}
+
+.form-container fieldset form img {
+    align-self: center;
+    height: 200px;
+    width: 300px;
+    object-fit: contain;
+}
+
+.profile-container fieldset .profile-box {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.profile-container fieldset .profile-box .main-box {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile-container fieldset .profile-box .main-box .box h6 {
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--main);
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.profile-container fieldset .profile-box .main-box .box span {
+    font-size: 16px;
+    margin-left: 20px;
+    font-weight: 700;
+}
+
+.p-dropdown {
+    width: 100%;
+    outline: none;
+    background: var(--bg);
+    padding: 5px 0 2px;
+    margin: 15px 0;
+    color: var(--font);
+    border: 1px solid var(--main);
+    border-radius: 6px;
+    resize: none;
+}
+
+.product-list-container {
+    margin: 30px auto;
+    font-family: Open Sans, sans-serif;
+}
+
+.product-list-container fieldset table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--main);
+}
+
+.product-list-container fieldset td,
+.product-list-container fieldset tr,
+.product-list-container fieldset th {
+    border-collapse: collapse;
+    border: 1px solid var(--main);
+    padding: 10px;
+    text-align: center;
+}
+
+.product-list-container fieldset td img,
+.cart-container .cart-details .details img {
+    height: 100px;
+}
+
+.product-list-container fieldset td,
+.product-list-container fieldset th {
+    width: 10%;
+}
+
+.product-list-container fieldset td:nth-child(5),
+.product-list-container fieldset th:nth-child(5) {
+    width: 50%;
+}
+
+.product-list-container fieldset i {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--main);
+    margin-right: 5px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+.product-list-container fieldset i:first-child:hover {
+    color: red;
+}
+
+.product-list-container fieldset i:nth-child(2):hover {
+    color: #00f;
+}
+
+.checkout-container h1 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.checkout-container h1 span {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--main);
+}
+
+.checkout-container h1:nth-child(3) {
+    color: #919191;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.checkout-container h1:nth-child(3) span {
+    font-size: 12px;
+    color: #919191;
+}
+
+.cart-container .cart-details {
+    display: flex;
+    gap: 2%;
+}
+
+.cart-container .cart-details .details {
+    width: 74%;
+    padding: 20px 0;
+}
+
+.cart-container .cart-details .details table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--main);
+}
+
+.cart-container .cart-details .details td,
+.cart-container .cart-details .details tr,
+.cart-container .cart-details .details th {
+    border-collapse: collapse;
+    border: 1px solid var(--main);
+    padding: 10px;
+    text-align: center;
+}
+
+.cart-container .cart-details .details td,
+.cart-container .cart-details .details th {
+    width: 20%;
+}
+
+.cart-container .cart-details fieldset {
+    border-radius: 5px;
+    margin: 8px 0;
+    padding: 20px;
+    width: 24%;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-container .cart-details fieldset .box {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.cart-container .cart-details fieldset .box .value1 {
+    font-size: 16px;
+}
+
+.cart-container .cart-details fieldset .box:nth-child(6) {
+    border-top: 1px solid #eee;
+    padding-top: 5px;
+    margin-top: 5px;
+}
+
+.cart-container .cart-details fieldset .box .value2 {
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.cart-container .cart-details fieldset .box .btn {
+    display: inline-block;
+    padding: 10px;
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+    border: 1px solid var(--main);
+    background: transparent;
+    color: var(--font);
+    border-radius: 10px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    transition: all .3s ease-in-out;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.cart-container .cart-details fieldset .box .btn:hover {
+    background: var(--main);
+    color: #fff;
+    box-shadow: 0 0 10px var(--main);
+}

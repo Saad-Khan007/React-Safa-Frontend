@@ -1,0 +1,50 @@
+.search-container .card-container {
+    margin-top: 20px;
+}
+
+.search-container .card-container .card {
+    display: flex;
+    gap: 20px;
+    margin: 10px 0;
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+.search-container .card-container .card img {
+    width: 30%;
+    height: 200px;
+    object-fit: contain;
+}
+
+.search-container .card-container .card .card-text {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.search-container .card-container .card .card-text .type {
+    font-size: 14px;
+    color: silver;
+}
+
+.search-container .card-container .card .card-text .name {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--main);
+}
+
+.search-container .card-container .card .card-text .price {
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.search-container .card-container .card .card-text .desc {
+    font-size: 15px;
+    width: 100%;
+}

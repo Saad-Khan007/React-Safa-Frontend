@@ -1,0 +1,200 @@
+.news-letter-wrapper {
+    font-family: Open Sans, sans-serif;
+    padding: 0 5%;
+}
+
+.news-letter-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 10px;
+    padding: 20px 0;
+    margin: auto;
+    max-width: 1200px;
+}
+
+.news-letter-container .news-letter-text {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 23px;
+    font-weight: 600;
+}
+
+.news-letter-container .news-letter-subscribe-bar .search-container {
+    width: 100%;
+    display: flex;
+    margin: auto;
+    padding: 3px;
+    height: 45px;
+    background-image: linear-gradient(to right, var(--main_rgb_2) 0%, var(--main_rgb_1) 100%);
+    border-radius: 50px;
+}
+
+.news-letter-container .news-letter-subscribe-bar .search-container input {
+    width: 80%;
+    font-size: 14px;
+    padding: 0 10px;
+    border: none;
+    outline: none;
+    border-radius: 50px 0 0 50px;
+}
+
+.news-letter-container .news-letter-subscribe-bar .search-container .search-icon {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    padding: 0 50px;
+    align-items: center;
+    border-radius: 0 50px 50px 0;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+.news-letter-container .news-letter-social-media {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.news-letter-container .news-letter-social-media span {
+    font-size: 25px;
+    font-weight: 600;
+    margin: 0 15px 0 0;
+}
+
+.news-letter-container .news-letter-social-media i {
+    line-height: normal;
+    min-width: 42px;
+    min-height: 42px;
+    text-align: center;
+    padding-top: 12px;
+    display: inline-block;
+    background: transparent;
+    vertical-align: middle;
+    color: #fff;
+    font-size: 18px;
+    margin: 0 5px;
+    background: #000;
+    border-radius: 50px;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+}
+
+.news-letter-container .news-letter-social-media i:hover {
+    background-color: var(--main);
+}
+
+.news-letter-container .news-letter-subscribe-bar .search-container .search-icon:hover {
+    background-color: #222;
+    color: #fff;
+}
+
+.footer-wrapper {
+    background-color: #000;
+    padding: 10px 5%;
+    font-family: Open Sans;
+    color: #fff;
+}
+
+.footer-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer-container .box-1 {
+    padding: 0 0 30px;
+    border-bottom: 1px solid #3a3a3a;
+}
+
+.footer-container .box-1 .box1 {
+    margin: 20px 0;
+    width: 100%;
+}
+
+.footer-container .box-1 h2 {
+    font-size: 16px;
+    letter-spacing: 0;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 10px;
+}
+
+.footer-container .box-1 .footer-box ul {
+    list-style: none;
+    font-size: 14px;
+    line-height: 33px;
+    color: #fff;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-container .box-1 .box2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.footer-container .box-1 .box2 .footer-box ul li {
+    transition: all .3s ease-in-out;
+    width: -moz-fit-content;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.footer-container .box-1 .box2 .footer-box ul li:hover {
+    color: var(--main);
+}
+
+.footer-container .box-2 .box ul {
+    list-style: none;
+    margin: 20px 0;
+    font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-container .box-2 .box ul li {
+    text-transform: capitalize;
+    font-size: 16px;
+    line-height: 40px;
+    transition: all .3s ease-in-out;
+    width: -moz-fit-content;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.footer-container .box-2 .box ul li:last-child:after {
+    content: "|";
+    font-size: 0px;
+}
+
+.footer-container .box-2 .box ul li:after {
+    content: "|";
+    font-size: 18px;
+    margin: 0 10px;
+    color: #fff !important;
+}
+
+.footer-container .box-2 .box ul li:hover {
+    color: var(--main);
+}
+
+.footer {
+    background-color: #000;
+    width: 100%;
+    border-top: 1px solid #3a3a3a;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    font-family: Open Sans;
+    font-size: 14px;
+}
+
+.footer a {
+    color: var(--main);
+    text-decoration: none;
+    cursor: pointer;
+}
