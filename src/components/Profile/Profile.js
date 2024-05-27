@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ProductContext } from '../../Context/Product'
 
 export default function Profile() {
+    const { user } = useContext(ProductContext)
     return (
         <div className="form-wrapper">
             <div className="profile-container form-container">
@@ -13,19 +15,19 @@ export default function Profile() {
                         <div className="main-box">
                             <div className="box">
                                 <h6>ID :</h6>
-                                <span>0</span>
+                                <span>{user._id}</span>
                             </div>
                             <div className="box">
                                 <h6>Name :</h6>
-                                <span></span>
+                                <span>{user.username}</span>
                             </div>
                             <div className="box">
                                 <h6>Email :</h6>
-                                <span></span>
+                                <span>{user.email}</span>
                             </div>
                             <div className="box">
-                                <h6>Password :</h6>
-                                <span></span>
+                                <h6>Created At :</h6>
+                                <span>{new Date(user.createdAt).toLocaleString()}</span>
                             </div>
                         </div>
                     </div>

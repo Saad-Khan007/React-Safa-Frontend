@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import './Home.css';
-import { ProductContext } from '../../Product';
+import { ProductContext } from '../../Context/Product';
 import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
@@ -8,24 +8,25 @@ export default function Home() {
     const navigator = useNavigate();
     const products = context.products;
     const [activeTab, setActiveTab] = useState('Featured');
-    const addCategory = (data) => {
+    const addTab = useCallback((data) => {
         const totalSales = data.reduce((acc, obj) => acc + obj.sales, 0);
         const averageSales = totalSales / data.length;
         const currentDate = new Date();
         const daysAgo = new Date(currentDate);
         daysAgo.setDate(currentDate.getDate() - 1);
         const newData = data.map(obj => {
-            if (obj.sales > averageSales) {
-                obj.category = 'Featured';
+            if (activeTab === "Featured" && obj.sales > averageSales) {
+                obj.type = 'Featured';
             }
-            if (new Date(obj.createdAt) > daysAgo) {
-                obj.category = 'Latest';
+
+            if (activeTab === "Latest" && new Date(obj.createdAt) > daysAgo) {
+                obj.type = 'Latest';
             }
             return obj;
         });
         return newData;
-    };
-    const filteredProducts = addCategory(products).filter(product => product.category === activeTab);
+    }, [activeTab]);
+    const [filteredProducts, setFilteredProducts] = useState(addTab(products).filter(product => product.type === activeTab));
     const [isScrolled, setIsScrolled] = useState(false);
     const ProductCard = ({ id, imgSrc, type, name, rate }) => (
         <div className="card" onClick={() => navigator('/productdetail/' + id)}>
@@ -33,7 +34,7 @@ export default function Home() {
             <div className="card-text">
                 <div className="type">{type}</div>
                 <div className="name">{name}</div>
-                <div className="rate">{rate}</div>
+                <div className="rate">${rate}</div>
             </div>
         </div>
     );
@@ -43,6 +44,10 @@ export default function Home() {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    useEffect(() => {
+        setFilteredProducts(addTab(products).filter(product => product.type === activeTab));
+    }, [activeTab, addTab, products]);
 
     return (
         <>

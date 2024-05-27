@@ -37,7 +37,7 @@
     outline: none;
     background: var(--bg);
     padding: 15px;
-    margin: 15px 0;
+    margin: 15px 0 5px;
     color: var(--font);
     border: 1px solid var(--main);
     font-size: 18px;
@@ -74,6 +74,10 @@
 .form-container fieldset p span {
     color: var(--main);
     cursor: pointer;
+}
+
+.form-container fieldset form .p-image-preview-container {
+    align-self: center;
 }
 
 .form-container fieldset form img {
@@ -129,37 +133,38 @@
     font-family: Open Sans, sans-serif;
 }
 
-.product-list-container fieldset table {
+table {
     width: 100%;
     border-collapse: collapse;
     border: 1px solid var(--main);
 }
 
-.product-list-container fieldset td,
-.product-list-container fieldset tr,
-.product-list-container fieldset th {
+td,
+tr,
+th {
     border-collapse: collapse;
     border: 1px solid var(--main);
     padding: 10px;
     text-align: center;
 }
 
-.product-list-container fieldset td img,
+td img,
 .cart-container .cart-details .details img {
     height: 100px;
 }
 
-.product-list-container fieldset td,
-.product-list-container fieldset th {
+td,
+th {
     width: 10%;
 }
 
-.product-list-container fieldset td:nth-child(5),
-.product-list-container fieldset th:nth-child(5) {
+td:nth-child(5),
+th:nth-child(5) {
     width: 50%;
 }
 
-.product-list-container fieldset i {
+.product-list-container fieldset i,
+tr td i {
     font-size: 20px;
     font-weight: 900;
     color: var(--main);
@@ -168,11 +173,11 @@
     transition: all .3s ease-in-out;
 }
 
-.product-list-container fieldset i:first-child:hover {
+tr td i:hover {
     color: red;
 }
 
-.product-list-container fieldset i:nth-child(2):hover {
+table i:nth-child(2):hover {
     color: #00f;
 }
 
@@ -204,7 +209,7 @@
 }
 
 .cart-container .cart-details .details {
-    width: 74%;
+    width: 100%;
     padding: 20px 0;
 }
 
@@ -235,6 +240,7 @@
     width: 24%;
     display: flex;
     flex-direction: column;
+    height: max-content;
 }
 
 .cart-container .cart-details fieldset .box {
@@ -280,4 +286,10 @@
     background: var(--main);
     color: #fff;
     box-shadow: 0 0 10px var(--main);
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    margin-bottom: 5px;
 }

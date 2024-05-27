@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'primeicons/primeicons.css';
 import "primereact/resources/themes/lara-light-cyan/theme.css";
-import { ProductProvider } from './Product';
+import { ProductProvider } from './Context/Product';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

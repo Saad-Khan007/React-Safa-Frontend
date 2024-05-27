@@ -66,7 +66,7 @@ header .container_1 .box_2 {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
 }
 
 header .container_1 .box_2 i {
@@ -185,4 +185,12 @@ header .container_3 {
     justify-content: center;
     align-items: center;
     background-color: var(--main_rgb_1);
+}
+
+.drop-down {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0;
 }

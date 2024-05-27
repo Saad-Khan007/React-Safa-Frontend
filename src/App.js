@@ -8,7 +8,7 @@ import { PrimeReactProvider } from 'primereact/api';
 import SignupForm from './components/Forms/SignupForm';
 import NotFound from './components/Not Found/NotFound';
 import LoginForm from './components/Forms/LoginForm';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import Profile from './components/Profile/Profile';
 import AddProductForm from './components/Forms/AddProductForm';
 import ProductList from './components/Forms/ProductList';
@@ -17,6 +17,9 @@ import CheckoutForm from './components/Forms/CheckoutForm';
 import Cart from './components/Forms/Cart'
 import ProductDetail from './components/Product Detail/ProductDetail';
 import Search from './components/Search/Search';
+import { ProductContext } from './Context/Product';
+import { Toast } from 'primereact/toast';
+import ProtectedRoute from './Protected Route/ProtectedRoute';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -29,8 +32,10 @@ const ScrollToTop = () => {
 };
 
 function App() {
+  const { toast } = useContext(ProductContext);
   return (
     <PrimeReactProvider>
+      <Toast ref={toast} />
       <div className="App">
         <BrowserRouter>
           <ScrollToTop />
@@ -38,14 +43,14 @@ function App() {
           <Routes>
             <Route index element={<Home />} />
             <Route path="contact" element={<ContactForm />} />
-            <Route path="signup" element={<SignupForm />} />
-            <Route path="login" element={<LoginForm />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="addproduct" element={<AddProductForm />} />
-            <Route path="productlist" element={<ProductList />} />
-            <Route path="orders" element={<Orders />} />
-            <Route path="checkout" element={<CheckoutForm />} />
-            <Route path="cart" element={<Cart />} />
+            <Route path="signup" element={<ProtectedRoute component={SignupForm} auth={true} />} />
+            <Route path="login" element={<ProtectedRoute component={LoginForm} auth={true} />} />
+            <Route path="profile" element={<ProtectedRoute component={Profile} />} />
+            <Route path="addproduct" element={<ProtectedRoute component={AddProductForm} />} />
+            <Route path="productlist" element={<ProtectedRoute component={ProductList} />} />
+            <Route path="orders" element={<ProtectedRoute component={Orders} />} />
+            <Route path="checkout" element={<ProtectedRoute component={CheckoutForm} />} />
+            <Route path="cart" element={<ProtectedRoute component={Cart} />} />
             <Route path="productdetail/:id" element={<ProductDetail />} />
             <Route path="search" element={<Search />} />
             <Route path="*" element={<NotFound />} />

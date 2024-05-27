@@ -1,6 +1,17 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { ProductContext } from '../../Context/Product'
+import { Image } from 'primereact/image';
 
 export default function ProductList() {
+    const { ProductAPI, token } = useContext(ProductContext)
+    const [productList, setProductList] = useState([]);
+
+    useEffect(() => {
+        ProductAPI.getProduct(token).then((res) => {
+            setProductList(res.data);
+        }).catch(err => console.error(err));
+    }, [])
+
     return (
         <div className='form-wrapper'>
             <div className="product-list-container form-container">
@@ -21,17 +32,24 @@ export default function ProductList() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><img src="../../../assets/img/img-4.jpg" alt=''/></td>
-                                <td>Assualt Rifle</td>
-                                <td>$2300.00</td>
-                                <td>Rifle</td>
-                                <td>Assault rifles are selective-fire firearms capable of firing in both semi-automatic and automatic modes. They are designed for rapid fire and are commonly used by military forces around the world.</td>
-                                <td className="icon">
-                                    <i title="Delete" className="pi pi-trash"></i>
-                                    <i title="Update" className="pi pi-pen-to-square"></i>
-                                </td>
-                            </tr>
+                            {productList.length !== 0 ? productList.map((p) => (
+                                <tr key={p._id}>
+                                    <td>
+                                        <Image src={p.imgSrc} zoomSrc={p.imgSrc} alt={p.name} width="" height="100" preview />
+                                    </td>
+                                    <td>{p.name}</td>
+                                    <td>${p.rate}</td>
+                                    <td>{p.category}</td>
+                                    <td>{p.desc}</td>
+                                    <td>
+                                        <i title="Remove From Cart" className="pi pi-trash" onClick={() => ProductAPI.deleteProduct(token, p._id)}></i>
+                                    </td>
+                                </tr>
+                            )) : (
+                                <tr>
+                                    <td colSpan="6">No products found</td>
+                                </tr>
+                            )}
                         </tbody>
                     </table>
                 </fieldset>

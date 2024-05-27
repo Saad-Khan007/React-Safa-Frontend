@@ -24,7 +24,7 @@
 .container {
     width: 100%;
     height: 400px;
-    background: center center fixed no-repeat url('/public/assets/img/Home-1.jpg');
+    background: center center no-repeat url('/public/assets/img/Home-1.jpg');
     background-size: cover;
     font-family: Open Sans, sans-serif;
     position: relative;
@@ -215,6 +215,7 @@
 .discover-container {
     margin: 10px auto;
     height: auto;
+    background-image: url('/public/assets/img/Dodge-banner.avif');
     max-width: 1200px;
     border-radius: 10px;
     overflow: hidden;
