@@ -44,7 +44,6 @@ export default function AddProductForm() {
                 sales: productSales,
             }
             ProductAPI.addProduct(data, token).then((res) => {
-                console.log(res);
                 showToast('success', 'Product', 'Product Added successfully');
                 navigate('/productlist');
             })

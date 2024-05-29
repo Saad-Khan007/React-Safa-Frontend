@@ -4,9 +4,8 @@ import { ProductContext } from '../../Context/Product';
 import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
-    const context = useContext(ProductContext);
+    const { products } = useContext(ProductContext);
     const navigator = useNavigate();
-    const products = context.products;
     const [activeTab, setActiveTab] = useState('Featured');
     const addTab = useCallback((data) => {
         const totalSales = data.reduce((acc, obj) => acc + obj.sales, 0);
@@ -90,7 +89,7 @@ export default function Home() {
                             filteredProducts.map((product, index) => (
                                 <ProductCard
                                     key={index}
-                                    id={product.id}
+                                    id={product._id}
                                     imgSrc={product.imgSrc}
                                     type={product.type}
                                     name={product.name}
@@ -101,7 +100,7 @@ export default function Home() {
                             products.map((product, index) => (
                                 <ProductCard
                                     key={index}
-                                    id={product.id}
+                                    id={product._id}
                                     imgSrc={product.imgSrc}
                                     type={product.type}
                                     name={product.name}

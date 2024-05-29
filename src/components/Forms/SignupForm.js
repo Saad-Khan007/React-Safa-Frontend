@@ -58,7 +58,7 @@ export default function SignupForm() {
         showToast('success', 'Sign Up', formData['name'] + ' is signed up successfully');
         navigate('/');
       }).catch((error) => {
-        console.log(error);
+        console.error(error);
         showToast('error', 'Signup Failed', error.response.data.error);
       });
     } else {

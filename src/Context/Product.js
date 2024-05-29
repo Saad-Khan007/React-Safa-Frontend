@@ -8,20 +8,24 @@ const ProductContext = createContext();
 const ProductProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem("safaToken"));
     const [user, setUser] = useState({});
-
     const [products, setProducts] = useState([]);
-
+    const UserContext = User
     const [total, setTotal] = useState({
         amount: 0,
         tax: 0,
         total: 0,
         discount: 0
     });
+    const toast = useRef(null);
+
+    const showToast = (severity, summary, detail) => {
+        toast.current.show({ severity, summary, detail });
+    };
 
     const calculateAmount = (carts) => {
         if (carts.length > 0) {
             let amount = carts.map((item) => {
-                return item.rate * item.quantity;
+                return item.product.rate * item.quantity;
             });
             amount = amount.reduce((acc, item) => item + acc);
             const tax = parseFloat((amount * 0.05).toFixed(2));
@@ -41,30 +45,31 @@ const ProductProvider = ({ children }) => {
         return JSON.parse(localStorageOrder) || [];
     })
 
-    const UserContext = User
 
-    const addToCart = (id) => {
-        if (id) {
+    const addToCart = (id, quantity) => {
+        if (id && quantity) {
             const cartToAdd = carts.find(c => c._id === id);
             if (!cartToAdd) {
-                setCarts((prevCart) => [...prevCart, product]);
+                CartApi.addCart(token, id, { quantity })
+                    .then((res) => setCarts((prevCart) => [...prevCart, res.data]))
+                    .catch((err) => console.error(err));
+                ;
             }
         }
     }
 
-    const removeFromCart = (product) => {
-        if (product) {
-            const cartToRemove = carts.find(c => c.id === product.id);
+    const removeFromCart = (id) => {
+        if (id) {
+            const cartToRemove = carts.find(c => c._id === id);
             if (cartToRemove) {
-                setCarts((prevCart) => prevCart.filter(cart => cart.id !== cartToRemove.id));
+                CartApi.deleteCart(token, id)
+                    .then(() => setCarts((prevCart) => prevCart.filter(cart => cart._id !== cartToRemove._id)))
+                    .catch((err) => console.error(err));
+                ;
             }
         }
     }
 
-    const toast = useRef(null);
-    const showToast = (severity, summary, detail) => {
-        toast.current.show({ severity, summary, detail });
-    };
 
     useEffect(() => {
         ProductAPI.getAll()
@@ -78,14 +83,15 @@ const ProductProvider = ({ children }) => {
 
     useEffect(() => {
         setTotal(calculateAmount(carts));
-    }, [carts, setTotal]);
+    }, [carts]);
 
     useEffect(() => {
-        CartApi.getCart(token).then((res) => {
-            console.log(res.data);
-            setCarts(res.data);
-        }).catch((err) => { console.error(err) });
-    }, []);
+        if (token) {
+            CartApi.getCart(token).then((res) => {
+                setCarts(res.data);
+            }).catch((err) => { console.error(err) });
+        }
+    }, [token]);
 
     useEffect(() => {
         localStorage.removeItem("safaOrder");
@@ -111,14 +117,14 @@ const ProductProvider = ({ children }) => {
             addToCart,
             removeFromCart,
             total,
-            setTotal,
             showToast,
             toast,
             UserContext,
             token,
             setToken,
             user,
-            ProductAPI
+            ProductAPI,
+            CartApi
         }}>
             {children}
         </ProductContext.Provider>

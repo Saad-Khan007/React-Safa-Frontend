@@ -3,7 +3,7 @@ import { ProductContext } from '../../Context/Product';
 import { useNavigate } from 'react-router-dom';
 
 export default function CheckoutForm() {
-    const { total, showToast, carts, setCarts, setOrders } = useContext(ProductContext);
+    const { total, showToast, CartApi, token } = useContext(ProductContext);
     const [email, setEmail] = useState('');
     const [address, setAddress] = useState('');
     const [contact, setContact] = useState('');
@@ -39,12 +39,10 @@ export default function CheckoutForm() {
             setErrors({});
             const orderData = {
                 email, address, contact,
-                status: 'In Progress',
-                orders: carts,
                 price: total.total
             };
-            setOrders((prev) => [...prev, orderData]);
-            setCarts([]);
+            console.log(orderData);
+            CartApi.deleteAllCart(token)
             showToast('success', 'Form Submitted', 'Your form has been submitted successfully.');
             navigator('/orders');
 

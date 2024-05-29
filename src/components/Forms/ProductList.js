@@ -7,10 +7,12 @@ export default function ProductList() {
     const [productList, setProductList] = useState([]);
 
     useEffect(() => {
-        ProductAPI.getProduct(token).then((res) => {
-            setProductList(res.data);
-        }).catch(err => console.error(err));
-    }, [])
+        if (token) {
+            ProductAPI.getProduct(token).then((res) => {
+                setProductList(res.data);
+            }).catch(err => console.error(err));
+        }
+    })
 
     return (
         <div className='form-wrapper'>

@@ -16,6 +16,12 @@ const CartApi = {
     },
     addCart: (token, id, data) => {
         return axios.post(envoirments.API_URL + '/cart/addcart/' + id, data, config(token))
+    },
+    deleteCart: (token, id) => {
+        return axios.delete(envoirments.API_URL + '/cart/deletecart/' + id, config(token))
+    },
+    deleteAllCart: (token) => {
+        return axios.delete(envoirments.API_URL + '/cart/deleteallcarts', config(token))
     }
 }
 

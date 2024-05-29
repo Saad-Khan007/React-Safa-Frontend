@@ -1,39 +1,44 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './ProductDetail.css'
 import { ProductContext } from '../../Context/Product'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function ProductDetail() {
-  const context = useContext(ProductContext);
+  const { products, carts, removeFromCart, addToCart, showToast, token } = useContext(ProductContext);
   const param = useParams();
-  const product = context.products.find(f => f.id === Number.parseInt(param.id));
+  const navigator = useNavigate();
+  const product = products.find(f => f._id === param.id);
   const [quantity, setQuantity] = useState(1);
   const [isAddedToCart, setIsAddedToCart] = useState(false);
 
+  const addToCartHandler = (id, q) => {
+    if (token) {
+      addToCart(id, q);
+    } else {
+      showToast('error', 'Cart', 'Please login first to add it to your cart list.');
+      navigator('/login');
+    }
+  };
+
   useEffect(() => {
-    const isAdded = context?.carts?.find(c => c.id === product.id);
+    const isAdded = carts?.find(c => c.product._id === product?._id);
     if (isAdded) {
       setIsAddedToCart(true);
     } else {
       setIsAddedToCart(false);
     }
-  }, [context.carts, product.id])
+  }, [carts, product])
 
-  useEffect(() => {
-    if (quantity) {
-      product.quantity = quantity;
-    }
-  }, [quantity, product])
   return (
     <div className="product-container">
       <div className="product-image">
-        <img src={product.imgSrc} alt='' />
+        <img src={product?.imgSrc} alt='' />
       </div>
       <div className="product-text">
-        <h2>{product.name}</h2>
-        <div className="type">Type: {product.type}</div>
-        <div className="price">Price: ${product.rate}</div>
-        <div className="desc">{product.desc}</div>
+        <h2>{product?.name}</h2>
+        <div className="type">Type: {product?.type}</div>
+        <div className="price">Price: ${product?.rate}</div>
+        <div className="desc">{product?.desc}</div>
         {!isAddedToCart && <div className="quantity">
           <div className="btn1" onClick={() => {
             const inputValue = parseInt(quantity);
@@ -48,11 +53,11 @@ export default function ProductDetail() {
           }}>+</div>
         </div>}
         <div className="btn-container">
-          {!isAddedToCart && <div className='btn' onClick={() => context.addToCart(product)}>
+          {!isAddedToCart && <div className='btn' onClick={() => addToCartHandler(param.id, quantity)}>
             <i className="pi pi-cart-plus"></i>
             Add to Cart
           </div>}
-          {isAddedToCart && <div className='btn' onClick={() => context.removeFromCart(product)}>
+          {isAddedToCart && <div className='btn' onClick={() => removeFromCart(carts?.find(c => c.product._id === product?._id)._id)}>
             <i className="pi pi-cart-minus"></i>
             Remove From Cart
           </div>}

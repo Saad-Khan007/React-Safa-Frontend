@@ -1,12 +1,18 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Image } from 'primereact/image';
 import { ProductContext } from '../../Context/Product';
 
 export default function Cart() {
-    const { carts, removeFromCart, total } = useContext(ProductContext);
+    const { carts, removeFromCart, total, CartApi, token, setCarts } = useContext(ProductContext);
 
-    
+    useEffect(() => {
+        if (token) {
+            CartApi.getCart(token).then((res) => {
+                setCarts(res.data);
+            }).catch(err => console.error(err));
+        }
+    }, [])
 
     return (
         <div className="form-wrapper">
@@ -28,15 +34,15 @@ export default function Cart() {
                             </thead>
                             <tbody>
                                 {carts.length !== 0 ? carts.map((c) => (
-                                    <tr key={c.id}>
+                                    <tr key={c._id}>
                                         <td>
-                                            <Image src={c.imgSrc} zoomSrc={c.imgSrc} alt={c.name} width="" height="100" preview />
+                                            <Image src={c.product.imgSrc} zoomSrc={c.product.imgSrc} alt={c.product.name} width="" height="100" preview />
                                         </td>
-                                        <td>{c.name}</td>
-                                        <td>${c.rate}</td>
+                                        <td>{c.product.name}</td>
+                                        <td>${c.product.rate}</td>
                                         <td>{c.quantity}</td>
                                         <td>
-                                            <i title="Remove From Cart" className="pi pi-trash" onClick={() => removeFromCart(c)}></i>
+                                            <i title="Remove From Cart" className="pi pi-trash" onClick={() => removeFromCart(c._id)}></i>
                                         </td>
                                     </tr>
                                 )) : (
